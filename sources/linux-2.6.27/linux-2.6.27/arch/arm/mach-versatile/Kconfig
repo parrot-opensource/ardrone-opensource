@@ -1,0 +1,44 @@
+menu "Versatile platform type"
+	depends on ARCH_VERSATILE
+
+config ARCH_VERSATILE_PB
+	bool "Support Versatile/PB platform"
+	default y
+	help
+	  Include support for the ARM(R) Versatile/PB platform.
+
+config MACH_VERSATILE_AB
+	bool "Support Versatile/AB platform"
+	help
+	  Include support for the ARM(R) Versatile/AP platform.
+
+config VERSATILE_PARROT6
+	bool "Support Parrot6 on FPGA"
+	default n
+	select VERSATILE_PARROT_TIC
+	help
+	  Include support for the Parrot6 on FPGA.
+
+config VERSATILE_PARROT_TIC
+	bool
+	default n
+
+config FB_P6
+	tristate "Parrot6 LCD framebuffer support"
+	depends on FB && VERSATILE_PARROT6
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	---help---
+	  This will enable support for LCD controller in Parrot6.
+	  You still need to build the Parrot6 LCD driver as an external
+	  module.
+
+config P6_NANDMC
+    bool "Barco-Silex BA315 NAND flash controller support for Parrot6"
+    default n
+    help
+	    This will enable support for Parrot6 NAND flash memory controller.
+	    You still need to build the BA315 driver as an external module.
+
+endmenu

@@ -1,0 +1,10 @@
+config USB_PARROT6
+	tristate "PARROT6 USB driver (Synopsys)"
+    depends on USB && (ARCH_PARROT6 || VERSATILE_PARROT6)
+
+config USB_PARROT6_DEBUG
+	bool "PARROT6 USB debug"
+	depends on USB_PARROT6
+    default n
+	help
+        Select this option to allow debug.
