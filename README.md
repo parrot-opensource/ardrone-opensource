@@ -37,7 +37,7 @@ You can download Open Source Archives from following table:
 |GPL2|[e2fsprogs] <- missing
 |GPL2|[iproute2] <- missing
 |GPL2|[iptables] <- missing
-|GPL2|[linux] (sources/linux-3.4.11)
+|GPL2|[linux] (sources/linux-2.6.27)
 |GPL2|[lttng-modules] <- missing
 |GPL2|[lttng-tools] <- missing
 |GPL2|[udevadm] <- missing
