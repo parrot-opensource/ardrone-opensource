@@ -1,0 +1,29 @@
+diff -ru busybox-1.4.1/scripts/kconfig/lxdialog/check-lxdialog.sh busybox-1.4.1/scripts/kconfig/lxdialog/check-lxdialog.sh
+--- busybox-1.4.1/scripts/kconfig/lxdialog/check-lxdialog.sh	2007-01-24 22:34:35.000000000 +0100
++++ build_arm_nofpu/busybox-1.4.1/scripts/kconfig/lxdialog/check-lxdialog.sh	2007-02-21 15:02:08.000000000 +0100
+@@ -19,6 +19,11 @@
+ 		echo '-lcurses'
+ 		exit
+ 	fi
++	$cc -print-file-name=libncurses.a | grep -q /
++	if [ $? -eq 0 ]; then
++		echo '-lintl -lncurses'
++		exit
++	fi
+ 	exit 1
+ }
+ 
+diff -ru busybox-1.4.1/scripts/kconfig/Makefile busybox-1.4.1/scripts/kconfig/Makefile
+--- busybox-1.4.1/scripts/kconfig/Makefile	2007-01-24 22:34:35.000000000 +0100
++++ busybox-1.4.1/scripts/kconfig/Makefile	2007-02-21 14:58:29.000000000 +0100
+@@ -124,6 +124,10 @@
+      else echo no ; fi)
+ ifeq ($(KBUILD_HAVE_NLS),no)
+ HOSTCFLAGS	+= -DKBUILD_NO_NLS
++else
++ifeq ($(shell ls /lib/libintl.a),/lib/libintl.a)
++HOST_LOADLIBES	+= -lintl
++endif
+ endif
+ 
+ # generated files seem to need this to find local include files
